@@ -5,7 +5,7 @@ document.getElementById("copyright-year").textContent = new Date().getFullYear()
 const r = document.querySelector(':root');
 let n = 2;
 
-let debug = false;
+let debug = true;
 
 const KEY_HANDLERS = {
     KeyE: () => {
