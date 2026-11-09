@@ -6,6 +6,7 @@
     --grey: #6F7780;
     --light: #fff;
     --debug: 0px;
+    --short-anim-time: 100ms;
 }
 
 /* Sizing and spacing */
@@ -20,6 +21,7 @@
 nav {--my-size: clamp(0.7rem, calc(0.6rem + 1.1vw), 1.1rem);} /* Font size of navigation text */
 footer {--my-size: clamp(0.6rem, calc(0.6rem + 0.8vw), 1.1rem);} /* Font size of footer text */
 nav a {gap: clamp(0.1rem, -0.2rem + 2vw, 0.6rem);} /* Gap between navigation text and its icon */
+div.redirects a {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);} /* Gap between redirect text and its icon */
 nav, footer {padding: min(calc(0.1rem + 0.6vw), 0.6rem) 0;} /* Padding for navigation bar and footer */
 
 main {--main-gap: clamp(5rem, 5rem + 4vw, 10rem);} /* Gap between sections and margin for section container */
@@ -31,7 +33,7 @@ svg.i-true {--dimensions: 1lh;} /* Size of full, true-sized SVGs */
 h1 {--my-size: clamp(1.50rem, calc(1.40rem + 4vw), 5.75rem);} /* Size of main header */
 h3 {--my-size: clamp(1.20rem, calc(1.10rem + 4vw), 5.25rem);} /* Size of other headers */
 time {font-size: clamp(1.50rem, calc(1.25rem + 2vw), 4.00rem);} /* Size of year paragraphs */
-p.tags {font-size: clamp(0.75rem, calc(0.25rem + 2vw), 1.10rem);} /* Size of meta paragraphs */
+p.tags, div.redirects a {--my-size: clamp(0.75rem, calc(0.25rem + 2vw), 1.10rem);} /* Size of meta paragraphs */
 h2, p {font-size: clamp(1.00rem, calc(0.50rem + 2vw), 1.50rem);} /* Size of paragraphs and smaller headers */
 
 article > div {flex: 5 1 16rem;} /* Relative size of the article div */
@@ -47,12 +49,9 @@ html {
 
 body {
     margin: 0;
-    overflow-x: hidden;
-
     background:
             linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7)),
-            url(../resources/background.png) center / cover repeat;
-    background-size: auto;
+            url(../resources/background.png) center top / auto repeat var(--light);
 }
 
 /* Article elements */
@@ -67,6 +66,7 @@ main {
     padding: var(--article-padding);
 
     isolation: isolate;
+    overflow-x: clip;
 }
 
 section {
@@ -136,7 +136,6 @@ nav {
     z-index: 1;
 
     background: var(--light);
-    /*border-bottom: 1px solid var(--secondary);*/
 }
 
 nav > ul {
@@ -161,7 +160,7 @@ nav a {
 
     font-size: var(--my-size);
     line-height: 1.0;
-    transition: 100ms color ease-out;
+    transition: var(--short-anim-time) color ease-out;
 }
 
 nav a:hover, nav a:focus-visible {color: var(--accent);}
@@ -204,10 +203,10 @@ figure {
     position: relative;
 }
 
-figure::after {
-    --room: 4rem;
+figure.cast::after {
+    --room: 1rem;
     --scale: 0.3;
-    --skew: 30deg;
+    --skew: 12deg;
     --dir: 1;
 
     content: "";
@@ -223,7 +222,7 @@ figure::after {
     background-clip: border-box;
 
     filter: brightness(0) blur(8px);
-    opacity: 0.1;
+    opacity: 0.15;
 
     transform-origin: center calc(100% - var(--room));
     transform: scaleY(var(--scale)) skewX( calc(var(--skew) * var(--dir)) );
@@ -231,26 +230,68 @@ figure::after {
     mask-image: linear-gradient(to top, #000 0%, transparent 85%);
 }
 
-article:nth-of-type(odd) > figure::after {--dir: -1;}
+article:nth-of-type(odd) > figure.cast::after {--dir: -1;}
 
-figure:has(#g-alarm)::after {background-image: url(../resources/graphic-alarm.png);}
-figure:has(#g-usb)::after {background-image: url(../resources/graphic-usb.png);}
-figure:has(#g-door)::after {background-image: url(../resources/graphic-door.png);}
-figure:has(#g-lamp)::after {background-image: url(../resources/graphic-lamp.png);}
-figure:has(#g-vhs)::after {background-image: url(../resources/graphic-vhs.png);}
-figure:has(#g-street)::after {background-image: url(../resources/graphic-street.png);}
-figure:has(#g-turkey)::after {background-image: url(../resources/graphic-turkey.png);}
+.cast-alarm::after {background-image: url(../resources/graphic-alarm.png);}
+.cast-usb::after {background-image: url(../resources/graphic-usb.png);}
+.cast-door::after {background-image: url(../resources/graphic-door.png);}
+.cast-lamp::after {background-image: url(../resources/graphic-lamp.png);}
+.cast-vhs::after {background-image: url(../resources/graphic-vhs.png);}
+.cast-street::after {background-image: url(../resources/graphic-street.png);}
+.cast-turkey::after {background-image: url(../resources/graphic-turkey.png);}
+
+div.redirects {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--entry-gap);
+    row-gap: calc(var(--entry-gap) * 0.50);
+
+    margin-top: 2rem;
+}
+div.redirects a {
+    display: flex;
+    flex-flow: row nowrap;
+
+    margin: 0;
+    padding: 0.6rem;
+
+    font-size: var(--my-size);
+    color: var(--grey);
+    border: 1px solid var(--grey);
+    border-radius: 6px 0;
+    background: none;
+
+    transition:
+            background var(--short-anim-time) ease-out,
+            border var(--short-anim-time) ease-out,
+            color var(--short-anim-time) ease-out;
+}
+div.redirects a.inline-link {
+    border: none;
+    padding: 0;
+    color: var(--accent);
+}
+div.redirects a:not(.inline-link):hover, div.redirects a:not(.inline-link):focus-visible {
+    background: var(--accent);
+    color: var(--light);
+    border: 1px solid var(--accent);
+}
 
 /* Icons */
 
 svg.i-block, svg.i-true {
     width: var(--dimensions);
     height: var(--dimensions);
-    transition: 100ms fill ease-out;
+    transition: var(--short-anim-time) fill ease-out;
 }
 
 svg.i-block {fill: var(--secondary);}
 svg.i-true {fill: var(--secondary); display: block;}
+div.redirects svg.i-true {fill: var(--grey);}
+div.redirects a:focus-visible svg.i-true {fill: var(--light);}
+div.redirects a:hover svg.i-true {fill: var(--light);}
 
 svg.i-flower:hover, h1:hover svg.i-flower {fill: var(--accent)}
 @media (prefers-reduced-motion: no-preference) {
@@ -279,6 +320,11 @@ h1, h3, p.tags, nav, .grotesque {
     font-weight: 300;
 }
 
+div.redirects a {
+    font-family: "Chivo", sans-serif;
+    font-weight: 500;
+}
+
 time {
     font-family: "Chivo Mono", sans-serif;
 }
@@ -299,13 +345,14 @@ h1, h3 {
     color: var(--deep);
     cursor: default;
 }
-h2 {
+h2, .hint {
     color: var(--grey);
     font-weight: 360;
 }
 
 p {margin-top: var(--entry-gap);}
 p.tags {
+    font-size: var(--my-size);
     color: var(--grey);
     margin: 0;
     line-height: 1.4;
@@ -333,7 +380,6 @@ span.no-wrap {text-wrap: nowrap; white-space: nowrap;}
     article:has(figure) > div {flex: none; align-self: stretch;}
     :root {--ideal-article-height: 24rem;}
     nav > ul {justify-content: space-between;}
-    figure::after {opacity: 0.2;}
 }
 
 a:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px;} /* Focus outlines */
