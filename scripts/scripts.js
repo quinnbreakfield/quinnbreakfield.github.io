@@ -1,7 +1,3 @@
-document.getElementById("copyright-year").textContent = new Date().getFullYear().toString();
-
-/* ------------ */
-
 const r = document.querySelector(':root');
 let n = 2;
 
@@ -15,6 +11,7 @@ const KEY_HANDLERS = {
 };
 
 document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea')) return;
     const handler = KEY_HANDLERS[e.code];
     if (handler && debug) { handler(); }
 });

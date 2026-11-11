@@ -1,3 +1,5 @@
+/* Color scheme and global variables */
+
 :root {
     --accent: #DB3700;
     --secondary: #B2B7BC;
@@ -9,388 +11,637 @@
     --short-anim-time: 100ms;
 }
 
-/* Sizing and spacing */
+/* Fundamental spacing */
 
-:root {
-    --article-width: 72rem; /* Width of the main article */
-    --article-padding: 0 min(0.50rem + 8vw, 8rem); /* Left and right padding of the article */
-    --ideal-article-height: 38rem; /* Preferred height of each article; article may grow */
-    --entry-gap: 1rem; /* The gap between items in the entry info container */
-}
+    :root {
+        /* Gap between sections and margin for section container */
+        --main-gap: clamp(6rem, 6rem + 8vw, 16rem);
 
-nav {--my-size: clamp(0.7rem, calc(0.6rem + 1.1vw), 1.1rem);} /* Font size of navigation text */
-footer {--my-size: clamp(0.6rem, calc(0.6rem + 0.8vw), 1.1rem);} /* Font size of footer text */
-nav a {gap: clamp(0.1rem, -0.2rem + 2vw, 0.6rem);} /* Gap between navigation text and its icon */
-div.redirects a {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);} /* Gap between redirect text and its icon */
-nav, footer {padding: min(calc(0.1rem + 0.6vw), 0.6rem) 0;} /* Padding for navigation bar and footer */
+        /* Width of the articles */
+        --article-width: 72rem;
 
-main {--main-gap: clamp(5rem, 5rem + 4vw, 10rem);} /* Gap between sections and margin for section container */
-article {gap: clamp(1.5rem, -1rem + 16vw, 8rem);} /* Distance between article items */
+        /* Padding of the article */
+        --article-padding: min(0.50rem + 8vw, 8rem);
+        --article-top-padding: calc(var(--main-gap) * 0.675);
+        --article-bottom-padding: calc(var(--main-gap) * 1.25);
 
-svg.i-block {--dimensions: calc(2 * var(--my-size) - 1lh);} /* Size of block SVGs */
-svg.i-true {--dimensions: 1lh;} /* Size of full, true-sized SVGs */
+        /* Preferred height of each article; article may grow */
+        --ideal-article-height: 38rem;
 
-h1 {--my-size: clamp(1.50rem, calc(1.40rem + 4vw), 5.75rem);} /* Size of main header */
-h3 {--my-size: clamp(1.20rem, calc(1.10rem + 4vw), 5.25rem);} /* Size of other headers */
-time {font-size: clamp(1.50rem, calc(1.25rem + 2vw), 4.00rem);} /* Size of year paragraphs */
-p.tags, div.redirects a {--my-size: clamp(0.75rem, calc(0.25rem + 2vw), 1.10rem);} /* Size of meta paragraphs */
-h2, p {font-size: clamp(1.00rem, calc(0.50rem + 2vw), 1.50rem);} /* Size of paragraphs and smaller headers */
+        /* The gap between items in the entry info container */
+        --entry-gap: 1rem;
+    }
 
-article > div {flex: 5 1 16rem;} /* Relative size of the article div */
-article > figure {flex: 2 0 12rem; max-width: 50%;} /* Relative size of figures */
-article:nth-of-type(odd) > figure {order: -1;} /* Repositioning figures */
+/* Navigation and footer size, spacing */
 
-/* Root */
+    /* Font size of navigation text */
+    nav {--my-size: clamp(0.7rem, calc(0.6rem + 1.1vw), 1.1rem);}
 
-html {
-    scroll-padding-bottom: 6rem;
-    scroll-padding-top: 6rem;
-}
+    /* Font size of footer text */
+    footer p {--my-size: clamp(0.55rem, calc(0.4rem + 0.8vw), 1.1rem);}
+
+    /* Gap between navigation text and its icon */
+    nav a {gap: clamp(0.1rem, -0.2rem + 2vw, 0.6rem);}
+
+    /* Padding for navigation bar and footer */
+    nav, footer {padding: min(calc(0.1rem + 0.6vw), 0.6rem) 0;}
+
+/* Article gaps */
+
+    /* Distance between generic article items */
+    article {gap: clamp(2rem, -2rem + 16vw, 8rem); row-gap: var(--entry-gap)}
+
+    /* Distance between items of articles containing a figure */
+    article:has(figure) {gap: clamp(1.5rem, -1rem + 16vw, 8rem);}
+
+    /* Gap between redirect text and its icon */
+    div.redirects a {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);}
+
+/* Icon size */
+
+    /* Size of block SVGs */
+    svg.i-block {--dimensions: calc(2 * var(--my-size) - 1lh);}
+
+    /* Size of full, true-sized SVGs */
+    svg.i-true {--dimensions: 1lh;}
+
+/* Text size */
+
+    /* Size of hero header */
+    h1.hero {--my-size: clamp(1.50rem, calc(1.40rem + 4vw), 5.75rem);}
+
+    /* Size of other headers */
+    h1, h2 {--my-size: clamp(1.20rem, calc(1.10rem + 4vw), 5.25rem);}
+
+    /* Size of year paragraphs */
+    time {font-size: clamp(1.50rem, calc(1.25rem + 2vw), 4.00rem);}
+
+    /* Size of meta paragraphs */
+    p.tags, form p, form label {--my-size: clamp(0.75rem, calc(0.25rem + 2vw), 1.10rem);}
+
+    /* Size of redirect text */
+    div.redirects a {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.25rem);}
+
+    /* Size of paragraphs */
+    p {--my-size: clamp(1.00rem, calc(0.50rem + 2vw), 1.50rem);}
+
+    /* Size of generic input text */
+    input, textarea {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.20rem);}
+
+    /* Size of submit text */
+    input[type=submit] {--my-size: clamp(0.95rem, calc(0.45rem + 2vw), 1.40rem);}
+
+/* Div size, spacing */
+
+    /* Relative size of major divs */
+    article > .d-major {flex: 5 1 16rem;}
+
+    /* Relative size of minor divs */
+    article > .d-minor {flex: 2 0 12rem;}
+
+    /* Size of figures */
+    article > figure {max-width: 50%}
+
+    /* Repositioning minor divs */
+    section:not(.inverse-target) > article:nth-of-type(odd) > .d-minor {order: -1;}
+
+    /* Repositioning major divs */
+    section.inverse-target > article:nth-of-type(odd) > .d-major {order: -1;}
+
+/* Root elements */
+
+html {scroll-padding-bottom: 6rem; scroll-padding-top: 6rem;}
 
 body {
+    display: flex;
+    flex-flow: column nowrap;
+
     margin: 0;
-    background:
+    min-height: 100vh; /* Page should be at least the height of the screen */
+    min-height: 100dvh;
+    background: /* Paper background */
             linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7)),
             url(../resources/background.png) center top / auto repeat var(--light);
 }
 
 /* Article elements */
 
-main {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: var(--main-gap); /* Distance between section */
+    /* Main holds all the sections in a column with inset padding */
+    main {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--main-gap);
 
-    margin: var(--main-gap) auto calc(var(--main-gap) * 1.50); /* Distance between the top and first section, and bottom and last section */
-    max-width: var(--article-width);
-    padding: var(--article-padding);
+        flex: 1 0 auto;
+        margin: 0 auto;
 
-    isolation: isolate;
-    overflow-x: clip;
-}
+        box-sizing: border-box;
+        width: 100%;
+        max-width: calc(var(--article-width) + 2*var(--article-padding));
+        padding: var(--article-top-padding) var(--article-padding) var(--article-bottom-padding);
 
-section {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: var(--main-gap); /* Distance between section */
-}
+        isolation: isolate;
+        overflow-x: clip;
+    }
 
-article {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    width: 100%;
-}
+    /* Section holds articles in a column */
+    section {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--main-gap); /* Distance between articles */
+    }
 
-article:has(figure):not(:first-of-type) {
-    min-height: var(--ideal-article-height);
-}
+    /* Articles hold content in a row */
+    article {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+    }
 
-article header {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: var(--entry-gap);
-}
+    /* Articles with figures */
+    article:has(figure) {align-items: flex-end;}
+    article:has(figure):not(:first-of-type) {min-height: var(--ideal-article-height);}
 
-div.entry-info {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: var(--entry-gap);
-}
+    /* Entry headers */
+    article header {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--entry-gap);
+    }
 
-div.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-}
+    /* Entry information */
+    div.entry-info {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--entry-gap);
+    }
 
-div.separator::before, div.separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid var(--secondary);
-}
+    /* Redirect div holds items in a row, wrapping if needed */
+    div.redirects {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--entry-gap);
+        row-gap: calc(var(--entry-gap) * 0.50);
 
-span:has(.i-block) {
-    display: inline-flex;
-    align-items: center;
-    flex-flow: row nowrap;
-    gap: clamp(.6rem, .5rem + .8vw, 1.6rem);
-}
+        margin-top: 2rem;
+    }
+
+    /* Some redirect divs use a column flow */
+    div.redirects.r-column {
+        flex-flow: column nowrap;
+        row-gap: calc(var(--entry-gap) * 1.50);
+        align-items: flex-start;
+    }
+
+    /* Redirect items hold text and an icon */
+    div.redirects a {
+        display: flex;
+        flex-flow: row nowrap;
+
+        margin: 0;
+        padding: 0.6rem;
+
+        font-size: var(--my-size);
+        color: var(--grey);
+        border: 1px solid var(--grey);
+        border-radius: 6px 0;
+        background: none;
+
+        transition:
+                background var(--short-anim-time) ease-out,
+                border var(--short-anim-time) ease-out,
+                color var(--short-anim-time) ease-out;
+    }
+
+    /* Inline redirects hold only text without a border */
+    div.redirects a.inline-link {
+        border: none;
+        padding: 0;
+        color: var(--accent);
+    }
+
+    /* Redirect hovering */
+    div.redirects a:not(.inline-link):hover {
+        background: var(--accent);
+        color: var(--light);
+        border: 1px solid var(--accent);
+    }
+
+    /* Content with flex-spaced icons */
+    span:has(.i-block) {
+        display: inline-flex;
+        align-items: center;
+        flex-flow: row nowrap;
+        gap: clamp(.6rem, .5rem + .8vw, 1.6rem);
+    }
 
 /* Navigation bar */
 
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Navigation bar holds items in a row and sticks to the page */
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    position: sticky;
-    top: 0;
+        position: sticky;
+        top: 0;
 
-    z-index: 1;
+        z-index: 1;
 
-    background: var(--light);
-}
+        background: var(--light);
+    }
 
-nav > ul {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    flex: 1;
+    /* Navigation list evenly spaces the items */
+    nav > ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex: 1;
 
-    list-style-type: none;
-    margin: 0;
+        list-style-type: none;
+        margin: 0;
 
-    max-width: var(--article-width);
-    padding: var(--article-padding);
-}
+        max-width: var(--article-width);
+        padding: 0 var(--article-padding);
+    }
 
-nav a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Navigation items */
+    nav a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    padding: 0.8rem 0;
+        padding: 0.8rem 0;
 
-    font-size: var(--my-size);
-    line-height: 1.0;
-    transition: var(--short-anim-time) color ease-out;
-}
-
-nav a:hover, nav a:focus-visible {color: var(--accent);}
+        font-size: var(--my-size);
+        line-height: 1.0;
+        transition: var(--short-anim-time) color ease-out;
+    }
 
 /* Footer */
 
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    /* Footer centers the content */
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-footer > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex: 1;
+    /* Footer div spaces out content in a row */
+    footer > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex: 1;
 
-    gap: 5rem;
+        gap: 5rem;
 
-    max-width: var(--article-width);
-    padding: var(--article-padding);
-}
+        max-width: var(--article-width);
+        padding: 0 var(--article-padding);
+    }
 
-footer div p {margin: 0; font-size: var(--my-size); padding: 0.8rem 0;}
+    /* Footer paragraphs */
+    footer > div > p {margin: 0; font-size: var(--my-size); padding: 0.8rem 0;}
+
+/* Forms */
+
+    /* Form holds items in a column */
+    form {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--entry-gap);
+
+        width: min( max(24rem, 50%), 100%);
+        margin-top: var(--entry-gap);
+    }
+
+    /* Form div holds a label and input in a column */
+    form > div {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: calc(var(--entry-gap) * 0.25);
+    }
+
+    /* Last form div holds a button and status paragraph in a row */
+    form > div:has(input[type="submit"]) {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--entry-gap);
+    }
+
+    /* Form labels, paragraphs */
+    form label, form p {
+        margin: 0;
+        font-size: var(--my-size);
+        color: var(--grey);
+    }
+
+    /* Form input and textarea */
+    textarea {resize: vertical; min-height: 6rem; max-height: 20rem;}
+    input, textarea {
+        font-size: var(--my-size);
+        padding: 0.6rem;
+
+        border: 1px solid var(--ash);
+        border-radius: 4px;
+    }
+
+    /* Form button */
+    input[type="submit"] {
+        height: calc( var(--my-size) * 2.00 + 0.50rem );
+        width: 50%;
+
+        background: var(--light);
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 6px 0;
+
+        transition:
+                background var(--short-anim-time) ease-out,
+                border var(--short-anim-time) ease-out,
+                color var(--short-anim-time) ease-out;
+    }
+    input[type="submit"]:not(:disabled):hover {
+        background: var(--accent);
+        color: var(--light);
+        outline: none;
+    }
+    input[type="submit"]:disabled {
+        color: var(--grey);
+        border: 1px solid var(--grey);
+        cursor: progress;
+    }
 
 /* Visuals */
 
-figure img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: var(--ideal-article-height);
-    object-fit: contain;
-    outline: var(--debug) solid pink;
-}
+    /* Figure image fits as best as possible, otherwise contains */
+    figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: var(--ideal-article-height);
+        object-fit: contain;
+        outline: var(--debug) solid pink;
+    }
 
-figure {
-    margin: 0;
-    position: relative;
-}
+    /* Figure */
+    figure {
+        margin: 0;
+        position: relative;
+    }
 
-figure.cast::after {
-    --room: 1rem;
-    --scale: 0.3;
-    --skew: 12deg;
-    --dir: 1;
+    /* Figure shadow */
+    figure.cast::after {
+        --room: 1rem;
+        --scale: 0.3;
+        --skew: 12deg;
+        --dir: 1;
 
-    content: "";
-    position: absolute;
-    inset: calc(var(--room) * -1);
-    padding: var(--room);
-    z-index: -1;
+        content: "";
+        position: absolute;
+        inset: calc(var(--room) * -1);
+        padding: var(--room);
+        z-index: -1;
 
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
-    background-origin: content-box;
-    background-clip: border-box;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+        background-origin: content-box;
+        background-clip: border-box;
 
-    filter: brightness(0) blur(8px);
-    opacity: 0.15;
+        filter: brightness(0) blur(8px);
+        opacity: 0.15;
 
-    transform-origin: center calc(100% - var(--room));
-    transform: scaleY(var(--scale)) skewX( calc(var(--skew) * var(--dir)) );
+        transform-origin: center calc(100% - var(--room));
+        transform: scaleY(var(--scale)) skewX( calc(var(--skew) * var(--dir)) );
 
-    mask-image: linear-gradient(to top, #000 0%, transparent 85%);
-}
+        mask-image: linear-gradient(to top, #000 0%, transparent 85%);
+    }
 
-article:nth-of-type(odd) > figure.cast::after {--dir: -1;}
+    /* Figure shadows alternate directions */
+    article:nth-of-type(odd) > figure.cast::after {--dir: -1;}
 
-.cast-alarm::after {background-image: url(../resources/graphic-alarm.png);}
-.cast-usb::after {background-image: url(../resources/graphic-usb.png);}
-.cast-door::after {background-image: url(../resources/graphic-door.png);}
-.cast-lamp::after {background-image: url(../resources/graphic-lamp.png);}
-.cast-vhs::after {background-image: url(../resources/graphic-vhs.png);}
-.cast-street::after {background-image: url(../resources/graphic-street.png);}
-.cast-turkey::after {background-image: url(../resources/graphic-turkey.png);}
-
-div.redirects {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: var(--entry-gap);
-    row-gap: calc(var(--entry-gap) * 0.50);
-
-    margin-top: 2rem;
-}
-div.redirects a {
-    display: flex;
-    flex-flow: row nowrap;
-
-    margin: 0;
-    padding: 0.6rem;
-
-    font-size: var(--my-size);
-    color: var(--grey);
-    border: 1px solid var(--grey);
-    border-radius: 6px 0;
-    background: none;
-
-    transition:
-            background var(--short-anim-time) ease-out,
-            border var(--short-anim-time) ease-out,
-            color var(--short-anim-time) ease-out;
-}
-div.redirects a.inline-link {
-    border: none;
-    padding: 0;
-    color: var(--accent);
-}
-div.redirects a:not(.inline-link):hover, div.redirects a:not(.inline-link):focus-visible {
-    background: var(--accent);
-    color: var(--light);
-    border: 1px solid var(--accent);
-}
+    /* Shadow images */
+    .cast-alarm::after {background-image: url(../resources/graphic-alarm.png);}
+    .cast-usb::after {background-image: url(../resources/graphic-usb.png);}
+    .cast-door::after {background-image: url(../resources/graphic-door.png);}
+    .cast-lamp::after {background-image: url(../resources/graphic-lamp.png);}
+    .cast-vhs::after {background-image: url(../resources/graphic-vhs.png);}
+    .cast-street::after {background-image: url(../resources/graphic-street.png);}
+    .cast-turkey::after {background-image: url(../resources/graphic-turkey.png);}
 
 /* Icons */
 
-svg.i-block, svg.i-true {
-    width: var(--dimensions);
-    height: var(--dimensions);
-    transition: var(--short-anim-time) fill ease-out;
-}
-
-svg.i-block {fill: var(--secondary);}
-svg.i-true {fill: var(--secondary); display: block;}
-div.redirects svg.i-true {fill: var(--grey);}
-div.redirects a:focus-visible svg.i-true {fill: var(--light);}
-div.redirects a:hover svg.i-true {fill: var(--light);}
-
-svg.i-flower:hover, h1:hover svg.i-flower {fill: var(--accent)}
-@media (prefers-reduced-motion: no-preference) {
-    svg.i-flower:hover, h1:hover svg.i-flower {
-        animation: icon-turn 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+    /* Icons fit their container's dimensions */
+    svg.i-block, svg.i-true {
+        width: var(--dimensions);
+        height: var(--dimensions);
+        transition: var(--short-anim-time) fill ease-out;
     }
-}
-@keyframes icon-turn {
-    0% {transform: rotate(0);}
-    80% {transform: rotate(60deg);}
-    100% {transform: rotate(60deg);}
-}
 
-a:hover svg, a:focus-visible svg  {fill: var(--accent);}
+    /* Icon colors */
+    svg.i-block {fill: var(--secondary);}
+    svg.i-true {fill: var(--secondary); display: block;}
+    div.redirects svg.i-true {fill: var(--grey);}
+
+    /* Icon hovering */
+    div.redirects a:hover svg.i-true {fill: var(--light);}
+    a:hover svg, a.p-current svg {fill: var(--accent);}
+    svg.i-flower:hover, h1:hover svg.i-flower {fill: var(--accent)}
+    @media (prefers-reduced-motion: no-preference) {
+        svg.i-flower:hover, h1:hover svg.i-flower {animation: icon-turn 1200ms cubic-bezier(0.16, 1, 0.3, 1);}
+    }
+    @keyframes icon-turn {
+        0% {transform: rotate(0);}
+        80% {transform: rotate(60deg);}
+        100% {transform: rotate(60deg);}
+    }
 
 /* Type */
 
-body {
-    font-family: "Noto Sans", sans-serif;
-    font-weight: 360;
-    color: var(--ash);
-}
+    /* By default, elements use Noto Sans and a dark color */
+    body {
+        font-family: "Noto Sans", sans-serif;
+        font-weight: 360;
+        color: var(--ash);
+    }
 
-h1, h3, p.tags, nav, .grotesque {
-    font-family: "Chivo", sans-serif;
-    font-weight: 300;
-}
+    /* Headers and other elements use Chivo */
+    h1, h2, p.tags, nav, .grotesque, textarea, input {
+        font-family: "Chivo", sans-serif;
+        font-weight: 300;
+    }
+    div.redirects a {
+        font-family: "Chivo", sans-serif;
+        font-weight: 500;
+    }
 
-div.redirects a {
-    font-family: "Chivo", sans-serif;
-    font-weight: 500;
-}
-
-time {
-    font-family: "Chivo Mono", sans-serif;
-}
-
-div.separator {
-    font-family: "Noto Serif", serif;
-    font-style: italic;
-    font-weight: 360;
-}
+    /* Time, form labels use Chivo Mono */
+    time, form label {
+        font-family: "Chivo Mono", sans-serif;
+    }
 
 /* Text */
 
-:is(h1, h2, h3, p) {margin: 0; padding: 0; line-height: 1.8;}
+    /* By default, text has no margin or padding */
+    :is(h1, h2, p) {margin: 0; padding: 0; line-height: 1.8;}
 
-h1, h3 {
-    font-size: var(--my-size);
-    line-height: 1.2;
-    color: var(--deep);
-    cursor: default;
-}
-h2, .hint {
-    color: var(--grey);
-    font-weight: 360;
-}
+    /* Headers */
+    h1, h2 {
+        font-size: var(--my-size);
+        line-height: 1.2;
+        color: var(--deep);
+        cursor: default;
+    }
 
-p {margin-top: var(--entry-gap);}
-p.tags {
-    font-size: var(--my-size);
-    color: var(--grey);
-    margin: 0;
-    line-height: 1.4;
-}
-time {
-    color: var(--accent);
-    margin: 0;
-    line-height: 1.0;
-}
-p.narrow {max-width: max(40ch, 50%);}
+    /* Paragraphs */
+    p {
+        font-size: var(--my-size);
+    }
 
-a {color: var(--ash); text-decoration: none;}
+    /* Paragraphs use a top margin, by default */
+    p:where(main p:not(:first-child)) {margin-top: var(--entry-gap);}
 
-span.no-wrap {text-wrap: nowrap; white-space: nowrap;}
+    /* Narrow paragraphs are half the width of the container, except on mobile */
+    p.narrow {max-width: max(40ch, 50%);}
+
+    /* Hint elements */
+    .hint {
+        color: var(--grey);
+        font-weight: 360;
+    }
+
+    /* Meta elements */
+    p.tags {
+        color: var(--grey);
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* Time */
+    time {
+        color: var(--accent);
+        margin: 0;
+        line-height: 1.0;
+    }
+
+    /* Redirects */
+    a {color: var(--ash); text-decoration: none;}
+
+    /* Essentials are accented */
+    span.essential {color: var(--accent); font-weight: 400;}
+
+    /* Error spans underline text until hover, then change the content */
+    span.err {
+
+
+        cursor: default;
+    }
+    .r-after {display: none;}
+    span.err:hover > .r-after {display: inline;}
+    span.err:hover > .r-before {display: none;}
+    span.err {text-decoration: underline wavy var(--secondary);}
+    span.err:hover {text-decoration: none;}
 
 /* Accessibility & cross-compatibility */
 
-@media (prefers-reduced-motion: no-preference) {
-    html {scroll-behavior: smooth;} /* Scroll behavior determined by preference */
-}
+    /* Scroll behavior determined by preference */
+    @media (prefers-reduced-motion: no-preference) {
+        html {scroll-behavior: smooth;}
+    }
 
-@media (max-width: 48rem) { /* Column articles for narrow devices */
-    article:has(figure) {flex-flow: column nowrap; align-items: center;}
-    article:has(figure) > figure {order: -1; flex: none;}
-    article:has(figure) > div {flex: none; align-self: stretch;}
-    :root {--ideal-article-height: 24rem;}
-    nav > ul {justify-content: space-between;}
-}
+    /* Mobile styling */
+    @media (max-width: 50rem) {
+        /* Reduced article height */
+        :root {--ideal-article-height: 24rem;}
 
-a:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px;} /* Focus outlines */
+        /* Column articles */
+        article {flex-flow: column nowrap;}
+
+        /* Centered figures */
+        article:has(figure) {align-items: center;}
+
+        /* Minor divs positioned first */
+        article > .d-minor {flex: none; order: -1;}
+
+        /* All divs stretch */
+        article > div {flex: none; align-self: stretch;}
+
+        /* Navigation bar spaces items between */
+        nav > ul {justify-content: space-between;}
+
+        /* Hide mobile-exclusive elements */
+        .wide-only {display: none;}
+    }
+
+    /* Focus outlines */
+
+        /* Redirects use outline offset */
+        a:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px;}
+
+        /* No outline for buttons */
+        div.redirects a:not(.inline-link):focus-visible {outline: none;}
+
+        /* Redirects and current page accented */
+        nav a:hover, nav a:focus-visible, nav a.p-current {color: var(--accent);}
+
+        /* Icons inside redirects accented or made light */
+        a:focus-visible svg {fill: var(--accent);}
+        div.redirects a:focus-visible svg.i-true {fill: var(--light);}
+
+        /* Redirect buttons highlighted */
+        div.redirects a:not(.inline-link):focus-visible {
+            background: var(--accent);
+            color: var(--light);
+            border: 1px solid var(--accent);
+        }
+
+        /* No border radius for inline links */
+        a.inline-link:focus-visible {border-radius: 0;}
+
+        /* Inputs gain an outline */
+        input:focus-visible, textarea:focus-visible {
+            border: 1px solid var(--accent);
+            outline: 1px solid var(--accent);
+        }
+
+        /* Input buttons highlighted */
+        input[type="submit"]:focus-visible {
+            background: var(--accent);
+            color: var(--light);
+            outline: none;
+        }
+
+    /* Functionally hide some headers, only visible for screen readers : @ffoodd on GitHub */
+    .sr-only {
+        position: absolute;
+        border: 0 !important;
+        clip-path: inset(50%) !important;
+        height: 1px !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        width: 1px !important;
+        white-space: nowrap !important;
+    }
 
 /* Debug */
 
-main, footer > div {outline: var(--debug) dotted green;}
-footer, nav, nav > ul {outline: var(--debug) solid green;}
-nav a * {outline: var(--debug) solid orange;}
-article > div, article > figure {outline: calc(2* var(--debug)) dotted grey;}
-article {outline: var(--debug) solid blue;}
-header {outline: var(--debug) solid red;}
-header * {outline: var(--debug) dotted darkorange;}
-header > div, header > h3 {outline: var(--debug) solid orange;}
+    main, footer > div {outline: var(--debug) dotted green;}
+    footer, nav, nav > ul {outline: var(--debug) solid green;}
+    nav a *, form > * {outline: var(--debug) solid orange;}
+    article > div, article > figure {outline: calc(2* var(--debug)) dotted grey;}
+    article {outline: var(--debug) solid blue;}
+    header {outline: var(--debug) solid red;}
+    header * {outline: var(--debug) dotted darkorange;}
+    header > div, header > h2 {outline: var(--debug) solid orange;}

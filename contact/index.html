@@ -1,0 +1,34 @@
+---
+layout: default
+title: Contact
+description: Leave me a short message.
+extra_scripts: [emailjs, contact]
+---
+
+<!-- Contact -->
+<section class="inverse-target" aria-labelledby="l-contact">
+
+    <div>
+        <h1>Contact me</h1>
+
+        <form id="contact-form">
+            <div>
+                <label for="ip-name">Name</label>
+                <input type="text" autocomplete="name" name="name" id="ip-name" required>
+            </div>
+            <div>
+                <label for="ip-mail">Email</label>
+                <input type="email" autocomplete="email" name="email" id="ip-mail" required>
+            </div>
+            <div>
+                <label for="ip-message">Message</label>
+                <textarea name="message" id="ip-message" required></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Send" id="ip-send">
+                <p role="status" id="ex-msg"></p>
+            </div>
+        </form>
+    </div>
+
+</section>

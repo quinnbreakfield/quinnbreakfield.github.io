@@ -1,0 +1,17 @@
+<!-- Navigation bar -->
+<nav>
+    <ul role="list">
+        {% for item in site.data.navigation %}
+            {% assign current_page = false %}
+            {% if page.title == item.title %}
+                {% assign current_page = true %}
+            {% endif %}
+
+            <li><a href="{{ item.url | relative_url }}" {% if current_page %} class="p-current" aria-current="page" {% endif %}>
+                <svg class="i-block" aria-hidden="true"><use href="{{ item.icon | relative_url }}"></use></svg>
+                {{ item.title }}
+            </a></li>
+
+        {% endfor %}
+    </ul>
+</nav>
