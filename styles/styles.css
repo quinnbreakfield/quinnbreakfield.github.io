@@ -189,7 +189,6 @@ body {
         justify-content: flex-start;
         align-items: center;
         gap: var(--entry-gap);
-        row-gap: calc(var(--entry-gap) * 0.50);
 
         margin-top: 2rem;
     }
