@@ -2,7 +2,7 @@
     <ul role="list">
         {% for item in site.data.navigation %}
             {% assign current_page = false %}
-            {% if page.title == item.title %}
+            {% if page.url == item.url %}
                 {% assign current_page = true %}
             {% endif %}
 

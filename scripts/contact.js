@@ -1,21 +1,22 @@
-(function() {
-    // https://dashboard.emailjs.com/admin/account
-    emailjs.init({
-        publicKey: "y8XC2vuzcCDoNg7CA",
-    });
-})();
+if(typeof emailjs !== "undefined") emailjs.init({publicKey: "y8XC2vuzcCDoNg7CA"});
 
 const form = document.getElementById("contact-form");
 const submit = document.getElementById("ip-send");
-const status = document.getElementById("ex-msg");
+const stat = document.getElementById("ex-msg");
 let clrTimer;
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     clearTimeout(clrTimer);
 
+    if(typeof emailjs === "undefined") {
+        stat.textContent = "Couldn't send that. Try again later";
+        clrTimer = setTimeout(()=>{stat.textContent = "";},3000);
+        return;
+    }
+
     submit.disabled = true;
-    status.textContent = "Sending...";
+    stat.textContent = "Sending...";
 
     try {
         await emailjs.send("service_u790jhb", "template_f3kn8vp", {
@@ -27,11 +28,12 @@ form.addEventListener('submit', async (event) => {
         });
 
         form.reset();
-        status.textContent = "Message sent!";
-        clrTimer = setTimeout(()=>{status.textContent = "";},3000);
+        stat.textContent = "Message sent!";
+        clrTimer = setTimeout(()=>{stat.textContent = "";},3000);
     } catch (error) {
-        console.log('FAILED...', error);
-        status.textContent = "Couldn't send that. Try again later";
+        console.error('FAILED...', error);
+        stat.textContent = "Couldn't send that. Try again later";
+        clrTimer = setTimeout(()=>{stat.textContent = "";},3000);
     } finally {
         submit.disabled = false;
     }

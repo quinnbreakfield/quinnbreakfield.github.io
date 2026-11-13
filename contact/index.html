@@ -9,20 +9,20 @@ extra_scripts: [emailjs, contact]
 <section class="inverse-target" aria-labelledby="l-contact">
 
     <div>
-        <h1>Contact me</h1>
+        <h1 id="l-contact">Contact me</h1>
 
-        <form id="contact-form">
+        <form id="contact-form" method="post">
             <div>
                 <label for="ip-name">Name</label>
-                <input type="text" autocomplete="name" name="name" id="ip-name" required>
+                <input type="text" autocomplete="name" name="name" id="ip-name" maxlength="40" required>
             </div>
             <div>
                 <label for="ip-mail">Email</label>
-                <input type="email" autocomplete="email" name="email" id="ip-mail" required>
+                <input type="email" autocomplete="email" name="email" id="ip-mail" maxlength="60" required>
             </div>
             <div>
                 <label for="ip-message">Message</label>
-                <textarea name="message" id="ip-message" required></textarea>
+                <textarea name="message" id="ip-message" maxlength="400" required></textarea>
             </div>
             <div>
                 <input type="submit" value="Send" id="ip-send">

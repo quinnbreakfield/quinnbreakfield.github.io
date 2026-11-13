@@ -8,7 +8,11 @@
     --grey: #6F7780;
     --light: #fff;
     --debug: 0px;
-    --short-anim-time: 100ms;
+    --short-anim-time: 0ms;
+}
+
+@media(prefers-reduced-motion: no-preference) {
+    :root {--short-anim-time: 100ms;}
 }
 
 /* Fundamental spacing */
@@ -64,6 +68,9 @@
 
     /* Size of full, true-sized SVGs */
     svg.i-true {--dimensions: 1lh;}
+
+    /* Size of social svgs */
+    .socials {--dimensions: clamp(1.20rem, 0.7rem + 2vw, 1.80rem);}
 
 /* Text size */
 
@@ -242,6 +249,16 @@ body {
         gap: clamp(.6rem, .5rem + .8vw, 1.6rem);
     }
 
+    /* Socials holds the social media items in a row */
+    .socials {
+        display: flex;
+        flex-flow: row wrap;
+        gap: calc(var(--dimensions) * 0.40);
+        margin-top: 0.2rem;
+        width: fit-content;
+        max-width: 100%;
+    }
+
 /* Navigation bar */
 
     /* Navigation bar holds items in a row and sticks to the page */
@@ -390,7 +407,6 @@ body {
         height: auto;
         max-height: var(--ideal-article-height);
         object-fit: contain;
-        outline: var(--debug) solid pink;
     }
 
     /* Figure */
@@ -442,7 +458,7 @@ body {
 /* Icons */
 
     /* Icons fit their container's dimensions */
-    svg.i-block, svg.i-true {
+    svg.i-block, svg.i-true, .socials svg {
         width: var(--dimensions);
         height: var(--dimensions);
         transition: var(--short-anim-time) fill ease-out;
@@ -451,6 +467,7 @@ body {
     /* Icon colors */
     svg.i-block {fill: var(--secondary);}
     svg.i-true {fill: var(--secondary); display: block;}
+    .socials svg {fill: var(--secondary); display: block;}
     div.redirects svg.i-true {fill: var(--grey);}
 
     /* Icon hovering */
@@ -509,7 +526,7 @@ body {
     }
 
     /* Paragraphs use a top margin, by default */
-    p:where(main p:not(:first-child)) {margin-top: var(--entry-gap);}
+    :where(main) p:not(:first-child) {margin-top: var(--entry-gap);}
 
     /* Narrow paragraphs are half the width of the container, except on mobile */
     p.narrow {max-width: max(40ch, 50%);}
@@ -541,11 +558,7 @@ body {
     span.essential {color: var(--accent); font-weight: 400;}
 
     /* Error spans underline text until hover, then change the content */
-    span.err {
-
-
-        cursor: default;
-    }
+    span.err {cursor: default;}
     .r-after {display: none;}
     span.err:hover > .r-after {display: inline;}
     span.err:hover > .r-before {display: none;}
@@ -640,7 +653,10 @@ body {
     footer, nav, nav > ul {outline: var(--debug) solid green;}
     nav a *, form > * {outline: var(--debug) solid orange;}
     article > div, article > figure {outline: calc(2* var(--debug)) dotted grey;}
+    figure img {outline: var(--debug) solid pink;}
     article {outline: var(--debug) solid blue;}
     header {outline: var(--debug) solid red;}
     header * {outline: var(--debug) dotted darkorange;}
     header > div, header > h2 {outline: var(--debug) solid orange;}
+    .socials {outline: var(--debug) solid green;}
+    .socials svg {outline: var(--debug) solid orange;}
