@@ -39,10 +39,13 @@
 /* Navigation and footer size, spacing */
 
     /* Font size of navigation text */
-    nav {--my-size: clamp(0.7rem, calc(0.6rem + 1.1vw), 1.1rem);}
+    nav {--my-size: clamp(0.6rem, 0.1rem + 3vw, 1.1rem);}
 
     /* Font size of footer text */
-    footer p {--my-size: clamp(0.55rem, calc(0.4rem + 0.8vw), 1.1rem);}
+    footer p {--my-size: clamp(0.55rem, 0.4rem + 0.8vw, 1.1rem);}
+
+    /* Gap between navigation text */
+    nav > div > ul {gap: clamp(0.1rem, 4vw, 2.8rem);}
 
     /* Gap between navigation text and its icon */
     nav a {gap: clamp(0.1rem, -0.2rem + 2vw, 0.6rem);}
@@ -70,7 +73,7 @@
     svg.i-true {--dimensions: 1lh;}
 
     /* Size of social svgs */
-    .socials {--dimensions: clamp(1.20rem, 0.7rem + 2vw, 1.80rem);}
+    .socials, .socials svg {--dimensions: clamp(0.70rem, 4vw, 1.40rem);}
 
 /* Text size */
 
@@ -87,7 +90,7 @@
     p.tags, form p, form label {--my-size: clamp(0.75rem, calc(0.25rem + 2vw), 1.10rem);}
 
     /* Size of redirect text */
-    div.redirects a {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.25rem);}
+    div.redirects a {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.30rem);}
 
     /* Size of paragraphs */
     p {--my-size: clamp(1.00rem, calc(0.50rem + 2vw), 1.50rem);}
@@ -161,7 +164,6 @@ body {
     /* Articles hold content in a row */
     article {
         display: flex;
-        flex-flow: row nowrap;
         justify-content: center;
         align-items: flex-start;
         width: 100%;
@@ -183,7 +185,6 @@ body {
     /* Entry information */
     div.entry-info {
         display: flex;
-        flex-flow: row nowrap;
         justify-content: flex-start;
         align-items: flex-start;
         gap: var(--entry-gap);
@@ -197,7 +198,7 @@ body {
         align-items: center;
         gap: var(--entry-gap);
 
-        margin-top: 2rem;
+        margin-top: calc(var(--entry-gap) * 2);
     }
 
     /* Some redirect divs use a column flow */
@@ -210,7 +211,6 @@ body {
     /* Redirect items hold text and an icon */
     div.redirects a {
         display: flex;
-        flex-flow: row nowrap;
 
         margin: 0;
         padding: 0.6rem;
@@ -245,23 +245,21 @@ body {
     span:has(.i-block) {
         display: inline-flex;
         align-items: center;
-        flex-flow: row nowrap;
         gap: clamp(.6rem, .5rem + .8vw, 1.6rem);
     }
 
     /* Socials holds the social media items in a row */
     .socials {
         display: flex;
-        flex-flow: row wrap;
-        gap: calc(var(--dimensions) * 0.40);
-        margin-top: 0.2rem;
+        align-items: center;
+        gap: calc(var(--dimensions) * 0.70);
         width: fit-content;
         max-width: 100%;
     }
 
 /* Navigation bar */
 
-    /* Navigation bar holds items in a row and sticks to the page */
+    /* Navigation bar holds inner div and sticks to the page */
     nav {
         display: flex;
         justify-content: center;
@@ -273,20 +271,30 @@ body {
         z-index: 1;
 
         background: var(--light);
+        border-bottom: 1px solid var(--secondary);
     }
 
-    /* Navigation list evenly spaces the items */
-    nav > ul {
+    /* Navigation div holds left and right lists */
+    nav > div {
         display: flex;
-        justify-content: space-evenly;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
         flex: 1;
+        gap: 0;
+
+        max-width: var(--article-width);
+        padding: 0 var(--article-padding);
+    }
+
+    /* Navigation list holds the items */
+    nav > div > ul {
+        display: flex;
+        align-items: center;
 
         list-style-type: none;
         margin: 0;
 
-        max-width: var(--article-width);
-        padding: 0 var(--article-padding);
+        padding: 0;
     }
 
     /* Navigation items */
@@ -349,7 +357,6 @@ body {
     /* Last form div holds a button and status paragraph in a row */
     form > div:has(input[type="submit"]) {
         display: flex;
-        flex-flow: row nowrap;
         justify-content: flex-start;
         align-items: flex-start;
         gap: var(--entry-gap);
@@ -467,7 +474,6 @@ body {
     /* Icon colors */
     svg.i-block {fill: var(--secondary);}
     svg.i-true {fill: var(--secondary); display: block;}
-    .socials svg {fill: var(--secondary); display: block;}
     div.redirects svg.i-true {fill: var(--grey);}
 
     /* Icon hovering */
@@ -493,7 +499,7 @@ body {
     }
 
     /* Headers and other elements use Chivo */
-    h1, h2, p.tags, nav, .grotesque, textarea, input {
+    h1, h2, p.tags, .grotesque, textarea, input {
         font-family: "Chivo", sans-serif;
         font-weight: 300;
     }
@@ -529,7 +535,7 @@ body {
     :where(main) p:not(:first-child) {margin-top: var(--entry-gap);}
 
     /* Narrow paragraphs are half the width of the container, except on mobile */
-    p.narrow {max-width: max(40ch, 50%);}
+    p.narrow {max-width: max(40ch, 60%);}
 
     /* Hint elements */
     .hint {
@@ -589,11 +595,13 @@ body {
         /* All divs stretch */
         article > div {flex: none; align-self: stretch;}
 
-        /* Navigation bar spaces items between */
-        nav > ul {justify-content: space-between;}
-
         /* Hide mobile-exclusive elements */
         .wide-only {display: none;}
+    }
+
+    /* Bare minimum styling */
+    @media (max-width: 320px) {
+        .medium-only {display: none}
     }
 
     /* Focus outlines */
@@ -650,7 +658,8 @@ body {
 /* Debug */
 
     main, footer > div {outline: var(--debug) dotted green;}
-    footer, nav, nav > ul {outline: var(--debug) solid green;}
+    nav > div > ul {outline: var(--debug) dotted green;}
+    footer, nav, nav > div {outline: var(--debug) solid green;}
     nav a *, form > * {outline: var(--debug) solid orange;}
     article > div, article > figure {outline: calc(2* var(--debug)) dotted grey;}
     figure img {outline: var(--debug) solid pink;}
@@ -658,5 +667,4 @@ body {
     header {outline: var(--debug) solid red;}
     header * {outline: var(--debug) dotted darkorange;}
     header > div, header > h2 {outline: var(--debug) solid orange;}
-    .socials {outline: var(--debug) solid green;}
     .socials svg {outline: var(--debug) solid orange;}

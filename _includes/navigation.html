@@ -1,16 +1,29 @@
 <nav>
-    <ul role="list">
-        {% for item in site.data.navigation %}
+    <div>
+        <ul role="list">
+            {% for item in site.data.navigation %}
             {% assign current_page = false %}
             {% if page.url == item.url %}
-                {% assign current_page = true %}
+            {% assign current_page = true %}
             {% endif %}
 
             <li><a href="{{ item.url | relative_url }}" {% if current_page %} class="p-current" aria-current="page" {% endif %}>
-                <svg class="i-block" aria-hidden="true"><use href="{{ item.icon | relative_url }}"></use></svg>
+                <svg class="i-block wide-only" aria-hidden="true"><use href="{{ item.icon | relative_url }}"></use></svg>
                 {{ item.title }}
             </a></li>
 
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+        <ul role="list" class="socials medium-only">
+
+            {% for item in site.data.socials %}
+
+            <li><a href="{{ item.url }}" aria-label="{{ item.title }} (opens in a new tab)" target="_blank" rel="me">
+                <svg class="i-block" aria-hidden="true"><use href="{{ item.icon | relative_url }}"></use></svg>
+            </a></li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
 </nav>

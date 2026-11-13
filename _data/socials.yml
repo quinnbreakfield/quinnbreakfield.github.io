@@ -1,0 +1,9 @@
+- title: Steam
+  url: https://store.steampowered.com/curator/45878587-Twisted-Flower/
+  icon: /resources/icon-steam.svg#i-steam
+- title: YouTube
+  url: https://youtube.com/@TwistedFlowerGames
+  icon: /resources/icon-youtube.svg#i-youtube
+- title: GitHub
+  url: https://github.com/qbreakfield
+  icon: /resources/icon-github.svg#i-github
