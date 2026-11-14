@@ -130,7 +130,7 @@ body {
     min-height: 100vh; /* Page should be at least the height of the screen */
     min-height: 100dvh;
     background: /* Paper background */
-            linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7)),
+            linear-gradient(rgb(from var(--light) r g b / 0.7), rgb(from var(--light) r g b / 0.7)),
             url(../resources/background.png) center top / auto repeat var(--light);
 }
 
@@ -375,6 +375,7 @@ body {
         font-size: var(--my-size);
         padding: 0.6rem;
 
+        background: var(--light);
         border: 1px solid var(--ash);
         border-radius: 4px;
     }
@@ -384,8 +385,8 @@ body {
         height: calc( var(--my-size) * 2.00 + 0.50rem );
         width: 50%;
 
-        background: var(--light);
         color: var(--accent);
+        background: none;
         border: 1px solid var(--accent);
         border-radius: 6px 0;
 
@@ -491,7 +492,7 @@ body {
     }
 
     /* Headers and other elements use Chivo */
-    h1, h2, p.tags, textarea, input {
+    h1, h2, p.tags, nav, footer, textarea, input {
         font-family: "Chivo", sans-serif;
         font-weight: 300;
     }
