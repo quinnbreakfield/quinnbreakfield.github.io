@@ -1,0 +1,117 @@
+- title: Tremble
+  image: {
+    id: alarm,
+    alt: Alarm clock,
+    width: 621,
+    height: 806
+  }
+  year: 2027
+  tags: ['Horror, Point & Click', 'Java Swing']
+  description: You called into the depths of the night. And the night called back. Coming soon.
+
+- title: Obscure USB
+  image: {
+    id: usb,
+    alt: Malicious USB device,
+    width: 597,
+    height: 1198
+  }
+  year: 2026
+  tags: ['Experimental BadUSB', 'Python']
+  description: A program that generates BadUSB payloads. On execution, it establishes a secure reverse shell between a Linux machine and a Windows target.
+  redirects:
+    - text: Download on GitHub
+      url: https://github.com/antiweevil/obscure-usb/
+
+- title: You Belong Here
+  image: {
+    id: door,
+    alt: Closed door,
+    width: 806,
+    height: 1587
+  }
+  year: 2026
+  tags: ['Horror, Puzzle', 'Unreal Engine 5']
+  description:
+    Family man Philip Oakes wakes with a piercing headache, unable to remember his past.
+    Dazed, he explores an old home, receiving guidance from a caller on the phone.
+    As Philip walks through the familiar rooms, he uncovers a reality better left forgotten.
+  redirects:
+    - text: Play on Steam
+      url: https://store.steampowered.com/app/4217680/You_Belong_Here/
+    - text: Watch Trailer
+      url: https://www.youtube.com/watch?v=yjwflHs6Nbw
+
+- title: The New Apartment
+  image: {
+    id: lamp,
+    alt: Bright lamp,
+    width: 905,
+    height: 1429
+  }
+  year: 2025
+  tags: ['Horror, Linear', 'Unreal Engine 5']
+  description:
+    Waking from the sofa, a man groggily prepares for work in the morning.
+    Yet, he swears there is something "off" about the place, reporting the occasional footstep or whisper.
+    As the man searches for the source of these sounds, he finds himself in the center of something much more sinister.
+  redirects:
+    - text: Play on Steam
+      url: https://store.steampowered.com/app/3404410/The_New_Apartment/
+    - text: Watch Trailer
+      url: https://www.youtube.com/watch?v=llPejHdxhPc
+
+- title: Backrooms Footage
+  image: {
+    id: vhs,
+    alt: VHS cassette,
+    width: 686,
+    height: 1233
+  }
+  year: 2022
+  tags: ['Found Footage', 'Blender 3D']
+  description:
+    An unknown explorer records the Backrooms, a viral location known for its chilling atmosphere.
+    As the wanderer documents their journey, they discover various landmarks and creatures living within.
+    Despite their now unknown whereabouts, the explorer garnered over 1 million views online from the footage.
+  redirects:
+    - text: Watch on YouTube
+      url: https://youtube.com/playlist?list=PLVokARXe-gge82phiN4VDclw__-Lo7gPH
+
+- title: Dream-like Dread
+  image: {
+    id: street,
+    alt: Street lamp,
+    width: 222,
+    height: 2139
+  }
+  year: 2022
+  tags: ['Horror, Browser', 'Unity 3D']
+  description:
+    As you walk through a dreamy neighborhood, you must run and hide from a quick creature that follows you.
+    Will you survive the five minutes alone, or will the figure catch you, waking you from the nightmare?
+  redirects:
+    - text: Play on Itch
+      url: https://euclidean.itch.io/dream-like-dread/
+    - text: Watch Trailer
+      url: https://www.youtube.com/watch?v=FyypKOTJUJQ
+
+- title: Turkey Terminator
+  image: {
+    id: turkey,
+    alt: Turkey,
+    width: 1000,
+    height: 1410
+  }
+  year: 2021
+  tags: ['Arcade, Mobile', 'Unity 2D']
+  description:
+    A fast-paced, fun infinite runner game, starring a turkey!
+    Jump over obstacles and run from a hunter.
+    Explore dozens of environments!
+  hint: (Retired from Google Play)
+  redirects:
+    - text: View on APK Pure
+      url: https://apkpure.com/turkey-terminator/com.EuclideanGames.TurkeyTerminator/
+    - text: Watch Gameplay
+      url: https://www.youtube.com/watch?v=uSe8hGnAJkE

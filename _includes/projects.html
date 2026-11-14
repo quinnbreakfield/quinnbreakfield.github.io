@@ -1,0 +1,38 @@
+{% for project in site.data.projects %}
+<article>
+    <div class="d-major">
+        <header>
+            <h2>{{ project.title }}</h2>
+            <div class="entry-info">
+                <time datetime="{{ project.year }}">{{ project.year }}</time>
+                <div>
+                    {% for tag in project.tags %}
+                    <p class="tags">{{ tag }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </header>
+        <p>
+            {{ project.description }}
+            {% if project.hint %}<span class="hint">{{ project.hint }}</span>{% endif %}
+        </p>
+        {% if project.redirects %}
+        <div class="redirects">
+            {% for redirect in project.redirects %}
+            <a href="{{ redirect.url }}" target="_blank">
+                {{ redirect.text }}
+                <span class="sr-only">(opens in new tab)</span>
+                <svg class="i-true" aria-hidden="true"><use href="{{ '/resources/icon-open.svg#i-open' | relative_url }}"></use></svg>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% assign url = project.image.id | prepend: '/resources/graphic-' | append: '.png' | relative_url %}
+    <figure class="d-minor cast" style="--cast: url('{{ url }}')">
+        <img class="graphic" src="{{ url }}" alt="{{ project.image.alt }}" width="{{ project.image.width }}" height="{{ project.image.height }}">
+    </figure>
+</article>
+
+{% endfor %}

@@ -435,6 +435,7 @@ body {
         padding: var(--room);
         z-index: -1;
 
+        background-image: var(--cast);
         background-repeat: no-repeat;
         background-position: center bottom;
         background-size: contain;
@@ -452,15 +453,6 @@ body {
 
     /* Figure shadows alternate directions */
     article:nth-of-type(odd) > figure.cast::after {--dir: -1;}
-
-    /* Shadow images */
-    .cast-alarm::after {background-image: url(../resources/graphic-alarm.png);}
-    .cast-usb::after {background-image: url(../resources/graphic-usb.png);}
-    .cast-door::after {background-image: url(../resources/graphic-door.png);}
-    .cast-lamp::after {background-image: url(../resources/graphic-lamp.png);}
-    .cast-vhs::after {background-image: url(../resources/graphic-vhs.png);}
-    .cast-street::after {background-image: url(../resources/graphic-street.png);}
-    .cast-turkey::after {background-image: url(../resources/graphic-turkey.png);}
 
 /* Icons */
 
@@ -499,7 +491,7 @@ body {
     }
 
     /* Headers and other elements use Chivo */
-    h1, h2, p.tags, nav, .grotesque, textarea, input {
+    h1, h2, p.tags, textarea, input {
         font-family: "Chivo", sans-serif;
         font-weight: 300;
     }
