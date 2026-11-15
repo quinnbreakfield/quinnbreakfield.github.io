@@ -87,10 +87,10 @@
     time {font-size: clamp(1.50rem, calc(1.25rem + 4vw), 4.00rem);}
 
     /* Size of meta paragraphs */
-    p.tags, form p, form label {--my-size: clamp(0.90rem, calc(0.45rem + 2vw), 1.20rem);}
+    p.tags, form p, form label {--my-size: clamp(0.90rem, calc(0.45rem + 2vw), 1.50rem);}
 
     /* Size of redirect text */
-    div.redirects a {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.10rem);}
+    div.redirects a {--my-size: clamp(1.00rem, calc(0.60rem + 2vw), 1.20rem);}
 
     /* Size of inline redirect text */
     div.redirects a.inline-link {--my-size: clamp(1.00rem, calc(0.60rem + 2vw), 1.40rem);}
@@ -214,13 +214,13 @@ body {
         display: flex;
 
         margin: 0;
-        padding: 0.65rem;
+        padding: 0.7rem 1.1rem;
 
         font-size: var(--my-size);
-        color: var(--grey);
-        border: 1px solid var(--grey);
-        border-radius: 6px 0;
-        background: none;
+        color: var(--ash);
+        border: 1px solid transparent;
+        border-radius: 2rem;
+        background: var(--secondary);
 
         transition:
                 background var(--short-anim-time) ease-out,
@@ -230,7 +230,9 @@ body {
 
     /* Inline redirects hold only text without a border */
     div.redirects a.inline-link {
+        background: none;
         border: none;
+        border-radius: 0;
         padding: 0;
         color: var(--accent);
     }
@@ -469,7 +471,7 @@ body {
     /* Icon colors */
     svg.i-block {fill: var(--secondary);}
     svg.i-true {fill: var(--secondary); display: block;}
-    div.redirects svg.i-true {fill: var(--grey);}
+    div.redirects svg.i-true {fill: var(--ash);}
 
     /* Icon hovering */
     div.redirects a:hover svg.i-true {fill: var(--light);}
