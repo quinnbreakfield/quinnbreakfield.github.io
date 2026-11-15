@@ -90,13 +90,13 @@
     p.tags, form p, form label {--my-size: clamp(0.90rem, calc(0.45rem + 2vw), 1.50rem);}
 
     /* Size of redirect text */
-    div.redirects a {--my-size: clamp(1.00rem, calc(0.60rem + 2vw), 1.20rem);}
+    div.redirects a {--my-size: clamp(0.90rem, calc(0.50rem + 2vw), 1.20rem);}
 
     /* Size of inline redirect text */
     div.redirects a.inline-link {--my-size: clamp(1.00rem, calc(0.60rem + 2vw), 1.40rem);}
 
     /* Size of paragraphs */
-    p {--my-size: clamp(1.20rem, calc(0.80rem + 2vw), 1.50rem);}
+    p {--my-size: clamp(1.10rem, calc(0.70rem + 2vw), 1.50rem);}
 
     /* Size of generic input text */
     input, textarea {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.20rem);}
