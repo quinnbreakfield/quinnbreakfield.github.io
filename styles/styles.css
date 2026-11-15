@@ -1,12 +1,17 @@
+---
+---
+
 /* Color scheme and global variables */
 
 :root {
     --accent: #DB3700;
-    --secondary: #B2B7BC;
+    --secondary: #BD2F00;
+
     --deep: #201E1F;
     --ash: #292929;
     --grey: #6F7780;
     --bone: #E5E8ED;
+    --silver: #B2B7BC;
     --light: #FFF;
     --debug: 0px;
     --short-anim-time: 0ms;
@@ -68,6 +73,9 @@
     /* Gap between button text and its icon */
     .btn {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);}
 
+    /* Gap between tags in each entry */
+    div.entry-info {gap: calc(var(--entry-gap) * 1.50); row-gap: 0;}
+
 /* Icon size */
 
     /* Size of block SVGs */
@@ -82,10 +90,10 @@
 /* Text size */
 
     /* Size of hero header */
-    h1.hero {--my-size: clamp(2.40rem, calc(2.40rem + 4vw), 7.00rem);}
+    h1.hero {--my-size: clamp(2.40rem, calc(2.20rem + 6vw), 7.00rem);}
 
     /* Size of other headers */
-    h1, h2 {--my-size: clamp(1.60rem, calc(1.50rem + 4vw), 5.25rem);}
+    h1, h2 {--my-size: clamp(1.60rem, calc(0.80rem + 6vw), 5.25rem);}
 
     /* Size of meta paragraphs */
     p.tags, time {--my-size: clamp(0.90rem, calc(0.55rem + 2vw), 1.50rem);}
@@ -175,7 +183,7 @@ body {
         flex-flow: column nowrap;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: var(--entry-gap);
+        gap: calc(var(--entry-gap) / 2);
     }
 
     /* Entry information */
@@ -184,20 +192,7 @@ body {
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: center;
-        gap: calc(var(--entry-gap) / 2);
-        margin-bottom: var(--entry-gap);
-    }
-
-    div.entry-info > * {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        gap: calc(var(--entry-gap) / 2);
-    }
-
-    div.entry-info > *:not(:first-child)::before {
-        content: "·" / "";
-        color: var(--secondary);
+        cursor: default;
     }
 
     /* Buttons use bubble styling */
@@ -209,12 +204,14 @@ body {
 
         font-size: var(--my-size);
         color: var(--ash);
-        border: 1px solid var(--secondary);
+        outline: none;
+        border: 1px solid var(--silver);
         border-radius: var(--button-radius);
         background: linear-gradient(to bottom, var(--light), var(--bone));
         z-index: 2;
 
         transition:
+                box-shadow var(--short-anim-time) ease-out,
                 border var(--short-anim-time) ease-out,
                 color var(--short-anim-time) ease-out;
     }
@@ -223,13 +220,14 @@ body {
     /* Button hovering */
     .btn:not(:disabled):hover {
         color: var(--light);
-        border: 1px solid var(--accent);
+        border: 1px solid var(--secondary);
+        box-shadow: 0 0 1rem .1rem rgb(from var(--accent) r g b / 0.25);
     }
     .btn::before {
         position: absolute;
         content: "";
-        inset: 0;
-        background: var(--accent);
+        inset: -1px;
+        background: linear-gradient(to top, var(--secondary), var(--accent));
         border-radius: inherit;
         z-index: -1;
         opacity: 0;
@@ -246,13 +244,6 @@ body {
         gap: var(--entry-gap);
 
         margin-top: calc(var(--entry-gap) * 2);
-    }
-
-    /* Some redirect divs use a column flow */
-    div.redirects.r-column {
-        flex-flow: column nowrap;
-        row-gap: calc(var(--entry-gap) * 1.50);
-        align-items: flex-start;
     }
 
     /* Redirect items have padding */
@@ -291,7 +282,7 @@ body {
         z-index: 1;
 
         background: var(--light);
-        border-bottom: 1px solid var(--secondary);
+        border-bottom: 1px solid var(--silver);
         box-shadow: 0 0 1rem .1rem rgb(from var(--bone) r g b / 0.5);
     }
 
@@ -399,7 +390,7 @@ body {
         padding: 0.6rem;
 
         background: var(--light);
-        border: 1px solid var(--secondary);
+        border: 1px solid var(--silver);
         border-radius: 0.50rem;
     }
 
@@ -473,8 +464,8 @@ body {
     }
 
     /* Icon colors */
-    svg.i-block {fill: var(--secondary);}
-    svg.i-true {fill: var(--secondary); display: block;}
+    svg.i-block {fill: var(--silver);}
+    svg.i-true {fill: var(--silver); display: block;}
     .btn svg.i-true {fill: currentColor;}
 
     /* Icon hovering */
@@ -503,7 +494,7 @@ body {
         font-family: "Chivo", sans-serif;
         font-weight: 300;
     }
-    .btn, div.entry-info > *:not(:first-child)::before {
+    .btn {
         font-family: "Chivo", sans-serif;
         font-weight: 400;
     }
@@ -562,7 +553,7 @@ body {
     .r-after {display: none;}
     span.err:hover > .r-after {display: inline;}
     span.err:hover > .r-before {display: none;}
-    span.err {text-decoration: underline wavy var(--secondary);}
+    span.err {text-decoration: underline wavy var(--silver);}
     span.err:hover {text-decoration: none;}
 
 /* Accessibility & cross-compatibility */
@@ -573,7 +564,7 @@ body {
     }
 
     /* Mobile styling */
-    @media (max-width: 60rem) {
+    @media (max-width: 56rem) {
         /* Reduced article height */
         :root {--ideal-article-height: 24rem;}
 
@@ -596,7 +587,17 @@ body {
         form button {width: 100%;}
 
         /* Hide mobile-exclusive elements */
-        .wide-only {display: none;}
+        .wide-only {display: none !important;}
+    }
+
+    /* Small width styling */
+    @media (max-width: 32rem) {
+        /* Headers, entries centered */
+        article header {align-items: center; text-align: center;}
+        div.entry-info {justify-content: center; column-gap: calc(var(--entry-gap) / 1.50);}
+
+        /* All buttons widened */
+        .btn {width: 100%;}
     }
 
     /* Bare minimum styling */
@@ -619,7 +620,8 @@ body {
         .btn:focus-visible {
             color: var(--light);
             outline: none;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--secondary);
+            box-shadow: 0 0 1rem .1rem rgb(from var(--accent) r g b / 0.25);
         }
         .btn:focus-visible::before {opacity: 1;}
 
@@ -642,6 +644,7 @@ body {
         white-space: nowrap !important;
     }
 
+{% if jekyll.environment == "development" %}
 /* Debug */
 
     main, footer > div {outline: var(--debug) dotted green;}
@@ -655,3 +658,4 @@ body {
     header * {outline: var(--debug) dotted darkorange;}
     header > div, header > h2 {outline: var(--debug) solid orange;}
     .socials svg {outline: var(--debug) solid orange;}
+{% endif %}

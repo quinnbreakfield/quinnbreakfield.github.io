@@ -17,7 +17,10 @@ noindex: true
             Somewhere, you took a wrong turn.
         </p>
         <div class="redirects">
-            <a href="{{ '/' | relative_url }}" class="btn">Back home ⟶</a>
+            <a href="{{ '/' | relative_url }}" class="btn">
+                Back home
+                <svg class="i-true" aria-hidden="true"><use href="{{ '/resources/icon-direct.svg#i-direct' | relative_url }}"></use></svg>
+            </a>
         </div>
     </div>
 

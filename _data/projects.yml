@@ -6,7 +6,7 @@
     height: 806
   }
   year: 2027
-  tags: ['Horror, Point & Click', 'Java Swing']
+  tags: ['Point & Click', 'Java Swing']
   description: You called into the depths of the night. And the night called back. Coming soon.
 
 - title: Obscure USB
@@ -17,7 +17,7 @@
     height: 1198
   }
   year: 2026
-  tags: ['Experimental BadUSB', 'Python']
+  tags: ['BadUSB', 'Python']
   description: A program that generates BadUSB payloads. On execution, it establishes a secure reverse shell between a Linux machine and a Windows target.
   redirects:
     - text: Download on GitHub
@@ -31,7 +31,7 @@
     height: 1587
   }
   year: 2026
-  tags: ['Horror, Puzzle', 'Unreal Engine 5']
+  tags: ['Horror, Puzzle', 'Unreal Engine']
   description:
     Family man Philip Oakes wakes with a piercing headache, unable to remember his past.
     Dazed, he explores an old home, receiving guidance from a caller on the phone.
@@ -50,7 +50,7 @@
     height: 1429
   }
   year: 2025
-  tags: ['Horror, Linear', 'Unreal Engine 5']
+  tags: ['Horror, Linear', 'Unreal Engine']
   description:
     Waking from the sofa, a man groggily prepares for work in the morning.
     Yet, he swears there is something "off" about the place, reporting the occasional footstep or whisper.
@@ -69,7 +69,7 @@
     height: 1233
   }
   year: 2022
-  tags: ['Found Footage', 'Blender 3D']
+  tags: ['Found Footage', 'Blender']
   description:
     An unknown explorer records the Backrooms, a viral location known for its chilling atmosphere.
     As the wanderer documents their journey, they discover various landmarks and creatures living within.
