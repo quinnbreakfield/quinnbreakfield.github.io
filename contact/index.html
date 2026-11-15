@@ -25,7 +25,10 @@ extra_scripts: [emailjs, contact]
                 <textarea name="message" id="ip-message" maxlength="400" required></textarea>
             </div>
             <div>
-                <button type="submit" id="ip-send" class="btn sharp">Send Message</button>
+                <button type="submit" id="ip-send" class="btn sharp">
+                    Send Message
+                    <svg class="i-true" aria-hidden="true"><use href="{{ '/resources/icon-send.svg#i-send' | relative_url }}"></use></svg>
+                </button>
                 <p role="status" id="status-msg" class="marginless"></p>
             </div>
         </form>

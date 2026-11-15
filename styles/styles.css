@@ -31,7 +31,7 @@
         --article-bottom-padding: calc(var(--main-gap) * 1.25);
 
         /* Preferred height of each article; article may grow */
-        --ideal-article-height: 38rem;
+        --ideal-article-height: 44rem;
 
         /* The gap between items in the entry info container */
         --entry-gap: 1rem;
@@ -63,10 +63,10 @@
     article {gap: clamp(2rem, -2rem + 16vw, 8rem); row-gap: var(--entry-gap)}
 
     /* Distance between items of articles containing a figure */
-    article:has(figure) {gap: clamp(1.5rem, -1rem + 16vw, 8rem);}
+    article:has(figure) {gap: clamp(2rem, -4rem + 16vw, 8rem);}
 
-    /* Gap between redirect text and its icon */
-    div.redirects a {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);}
+    /* Gap between button text and its icon */
+    .btn {gap: clamp(0.1rem, -0.1rem + 2vw, 0.4rem);}
 
 /* Icon size */
 
@@ -103,10 +103,10 @@
 /* Div size, spacing */
 
     /* Relative size of major divs */
-    article > .d-major {flex: 5 1 16rem;}
+    article > .d-major {flex: 5 1 12rem;}
 
     /* Relative size of minor divs */
-    article > .d-minor {flex: 2 0 12rem;}
+    article > .d-minor {flex: 2 0 8rem;}
 
     /* Size of figures */
     article > figure {max-width: 50%}
@@ -168,7 +168,6 @@ body {
 
     /* Articles with figures */
     article:has(figure) {align-items: flex-end;}
-    article:has(figure):not(:first-of-type) {min-height: var(--ideal-article-height);}
 
     /* Entry headers */
     article header {
@@ -203,6 +202,9 @@ body {
 
     /* Buttons use bubble styling */
     .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
 
         font-size: var(--my-size);
@@ -255,7 +257,6 @@ body {
 
     /* Redirect items have padding */
     div.redirects a {
-        display: flex;
         margin: 0;
         padding: 0.8rem 1.2rem;
     }
@@ -329,6 +330,7 @@ body {
         line-height: 1.0;
         transition: var(--short-anim-time) color ease-out;
     }
+    nav a:hover {color: var(--accent);}
 
 /* Footer */
 
@@ -473,10 +475,9 @@ body {
     /* Icon colors */
     svg.i-block {fill: var(--secondary);}
     svg.i-true {fill: var(--secondary); display: block;}
-    div.redirects svg.i-true {fill: var(--ash);}
+    .btn svg.i-true {fill: currentColor;}
 
     /* Icon hovering */
-    .btn:not(:disabled):hover svg.i-true {fill: var(--light);}
     a:hover svg, a.p-current svg {fill: var(--accent);}
     svg.i-flower:hover, h1:hover svg.i-flower {fill: var(--accent)}
     @media (prefers-reduced-motion: no-preference) {
@@ -609,11 +610,10 @@ body {
         a:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px;}
 
         /* Redirects and current page accented */
-        nav a:hover, nav a:focus-visible, nav a.p-current {color: var(--accent);}
+        nav a:focus-visible, nav a.p-current {color: var(--accent);}
 
-        /* Icons inside redirects/buttons accented or made light */
+        /* Icons inside redirects accented or made light */
         a:focus-visible svg {fill: var(--accent);}
-        .btn:focus-visible svg.i-true {fill: var(--light);}
 
         /* Buttons highlighted */
         .btn:focus-visible {
