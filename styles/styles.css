@@ -6,6 +6,7 @@
     --deep: #201E1F;
     --ash: #292929;
     --grey: #6F7780;
+    --bone: #DBDEE1;
     --light: #fff;
     --debug: 0px;
     --short-anim-time: 0ms;
@@ -78,7 +79,7 @@
 /* Text size */
 
     /* Size of hero header */
-    h1.hero {--my-size: clamp(2.40rem, calc(2.40rem + 4vw), 6.20rem);}
+    h1.hero {--my-size: clamp(2.40rem, calc(2.40rem + 4vw), 7.00rem);}
 
     /* Size of other headers */
     h1, h2 {--my-size: clamp(1.60rem, calc(1.30rem + 4vw), 5.25rem);}
@@ -220,7 +221,7 @@ body {
         color: var(--ash);
         border: 1px solid transparent;
         border-radius: 2rem;
-        background: var(--secondary);
+        background: var(--bone);
 
         transition:
                 background var(--short-anim-time) ease-out,
@@ -274,7 +275,8 @@ body {
         z-index: 1;
 
         background: var(--light);
-        border-bottom: 1px solid var(--secondary);
+        border-bottom: 1px solid var(--bone);
+        box-shadow: 0 0 1rem .1rem rgb(from var(--bone) r g b / 0.5);
     }
 
     /* Navigation div holds left and right lists */
@@ -563,7 +565,7 @@ body {
     .r-after {display: none;}
     span.err:hover > .r-after {display: inline;}
     span.err:hover > .r-before {display: none;}
-    span.err {text-decoration: underline wavy var(--secondary);}
+    span.err {text-decoration: underline wavy var(--bone);}
     span.err:hover {text-decoration: none;}
 
 /* Accessibility & cross-compatibility */
