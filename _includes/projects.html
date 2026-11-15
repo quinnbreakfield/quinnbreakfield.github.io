@@ -19,7 +19,7 @@
         {% if project.redirects %}
         <div class="redirects">
             {% for redirect in project.redirects %}
-            <a href="{{ redirect.url }}" target="_blank">
+            <a href="{{ redirect.url }}" target="_blank" class="btn">
                 {{ redirect.text }}
                 <span class="sr-only">(opens in new tab)</span>
                 <svg class="i-true" aria-hidden="true"><use href="{{ '/resources/icon-open.svg#i-open' | relative_url }}"></use></svg>
@@ -31,7 +31,7 @@
 
     {% assign url = project.image.id | prepend: '/resources/graphic-' | append: '.png' | relative_url %}
     <figure class="d-minor cast" style="--cast: url('{{ url }}')">
-        <img class="graphic" src="{{ url }}" alt="{{ project.image.alt }}" width="{{ project.image.width }}" height="{{ project.image.height }}">
+        <img class="graphic" src="{{ url }}" alt="{{ project.image.alt }}" width="{{ project.image.width }}" height="{{ project.image.height }}" {% unless forloop.first %}loading="lazy"{% else %}fetchpriority="high"{% endunless %}>
     </figure>
 </article>
 

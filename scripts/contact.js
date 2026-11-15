@@ -2,7 +2,7 @@ if(typeof emailjs !== "undefined") emailjs.init({publicKey: "y8XC2vuzcCDoNg7CA"}
 
 const form = document.getElementById("contact-form");
 const submit = document.getElementById("ip-send");
-const stat = document.getElementById("ex-msg");
+const stat = document.getElementById("status-msg");
 let clrTimer;
 
 form.addEventListener('submit', async (event) => {

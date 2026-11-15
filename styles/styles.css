@@ -6,8 +6,8 @@
     --deep: #201E1F;
     --ash: #292929;
     --grey: #6F7780;
-    --bone: #DBDEE1;
-    --light: #fff;
+    --bone: #E5E8ED;
+    --light: #FFF;
     --debug: 0px;
     --short-anim-time: 0ms;
 }
@@ -82,28 +82,23 @@
     h1.hero {--my-size: clamp(2.40rem, calc(2.40rem + 4vw), 7.00rem);}
 
     /* Size of other headers */
-    h1, h2 {--my-size: clamp(1.60rem, calc(1.30rem + 4vw), 5.25rem);}
+    h1, h2 {--my-size: clamp(1.60rem, calc(1.50rem + 4vw), 5.25rem);}
 
     /* Size of year paragraphs */
-    time {font-size: clamp(1.50rem, calc(1.25rem + 4vw), 4.00rem);}
+    time {font-size: clamp(1.80rem, calc(1.65rem + 4vw), 5.00rem);}
 
     /* Size of meta paragraphs */
-    p.tags, form p, form label {--my-size: clamp(0.90rem, calc(0.45rem + 2vw), 1.50rem);}
+    p.tags {--my-size: clamp(0.90rem, calc(0.55rem + 2vw), 1.50rem);}
+    form p, form label {--my-size: clamp(0.80rem, calc(0.35rem + 2vw), 1.20rem);}
 
-    /* Size of redirect text */
-    div.redirects a {--my-size: clamp(0.90rem, calc(0.50rem + 2vw), 1.20rem);}
-
-    /* Size of inline redirect text */
-    div.redirects a.inline-link {--my-size: clamp(1.00rem, calc(0.60rem + 2vw), 1.40rem);}
+    /* Size of button text */
+    .btn {--my-size: clamp(0.90rem, calc(0.50rem + 2vw), 1.20rem);}
 
     /* Size of paragraphs */
     p {--my-size: clamp(1.10rem, calc(0.70rem + 2vw), 1.50rem);}
 
     /* Size of generic input text */
     input, textarea {--my-size: clamp(0.80rem, calc(0.40rem + 2vw), 1.20rem);}
-
-    /* Size of submit text */
-    input[type=submit] {--my-size: clamp(0.95rem, calc(0.45rem + 2vw), 1.40rem);}
 
 /* Div size, spacing */
 
@@ -192,6 +187,39 @@ body {
         gap: var(--entry-gap);
     }
 
+    /* Buttons use bubble styling */
+    .btn {
+        position: relative;
+
+        font-size: var(--my-size);
+        color: var(--ash);
+        border: 1px solid var(--secondary);
+        border-radius: 2rem;
+        background: linear-gradient(to bottom, var(--light), var(--bone));
+        z-index: 2;
+
+        transition:
+                border var(--short-anim-time) ease-out,
+                color var(--short-anim-time) ease-out;
+    }
+
+    /* Button hovering */
+    .btn:not(:disabled):hover {
+        color: var(--light);
+        border: 1px solid var(--accent);
+    }
+    .btn::before {
+        position: absolute;
+        content: "";
+        inset: 0;
+        background: var(--accent);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity var(--short-anim-time) ease-out;
+    }
+    .btn:not(:disabled):hover::before {opacity: 1;}
+
     /* Redirect div holds items in a row, wrapping if needed */
     div.redirects {
         display: flex;
@@ -210,39 +238,11 @@ body {
         align-items: flex-start;
     }
 
-    /* Redirect items hold text and an icon */
+    /* Redirect items have padding */
     div.redirects a {
         display: flex;
-
         margin: 0;
         padding: 0.7rem 1.1rem;
-
-        font-size: var(--my-size);
-        color: var(--ash);
-        border: 1px solid transparent;
-        border-radius: 2rem;
-        background: var(--bone);
-
-        transition:
-                background var(--short-anim-time) ease-out,
-                border var(--short-anim-time) ease-out,
-                color var(--short-anim-time) ease-out;
-    }
-
-    /* Inline redirects hold only text without a border */
-    div.redirects a.inline-link {
-        background: none;
-        border: none;
-        border-radius: 0;
-        padding: 0;
-        color: var(--accent);
-    }
-
-    /* Redirect hovering */
-    div.redirects a:not(.inline-link):hover {
-        background: var(--accent);
-        color: var(--light);
-        border: 1px solid var(--accent);
     }
 
     /* Content with flex-spaced icons */
@@ -360,7 +360,7 @@ body {
     }
 
     /* Last form div holds a button and status paragraph in a row */
-    form > div:has(input[type="submit"]) {
+    form > div:has(button) {
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -377,38 +377,23 @@ body {
 
     /* Form input and textarea */
     textarea {resize: vertical; min-height: 6rem; max-height: 20rem;}
-    input, textarea {
+    input, textarea, button {
         font-size: var(--my-size);
         padding: 0.6rem;
 
         background: var(--light);
-        border: 1px solid var(--ash);
-        border-radius: 4px;
+        border: 1px solid var(--secondary);
+        border-radius: 0.25rem;
     }
 
     /* Form button */
-    input[type="submit"] {
+    form button {
         height: calc( var(--my-size) * 2.00 + 0.50rem );
-        width: 50%;
-
-        color: var(--accent);
-        background: none;
-        border: 1px solid var(--accent);
-        border-radius: 6px 0;
-
-        transition:
-                background var(--short-anim-time) ease-out,
-                border var(--short-anim-time) ease-out,
-                color var(--short-anim-time) ease-out;
-    }
-    input[type="submit"]:not(:disabled):hover {
-        background: var(--accent);
-        color: var(--light);
+        width: 12rem;
         outline: none;
     }
-    input[type="submit"]:disabled {
+    form button:disabled {
         color: var(--grey);
-        border: 1px solid var(--grey);
         cursor: progress;
     }
 
@@ -476,7 +461,7 @@ body {
     div.redirects svg.i-true {fill: var(--ash);}
 
     /* Icon hovering */
-    div.redirects a:hover svg.i-true {fill: var(--light);}
+    .btn:not(:disabled):hover svg.i-true {fill: var(--light);}
     a:hover svg, a.p-current svg {fill: var(--accent);}
     svg.i-flower:hover, h1:hover svg.i-flower {fill: var(--accent)}
     @media (prefers-reduced-motion: no-preference) {
@@ -491,7 +476,7 @@ body {
 /* Type */
 
     /* By default, elements use Libre Franklin and a dark color */
-    body, input, textarea {
+    body, input, textarea, button {
         font-family: "Libre Franklin", sans-serif;
         font-weight: 400;
         color: var(--ash);
@@ -502,13 +487,13 @@ body {
         font-family: "Chivo", sans-serif;
         font-weight: 300;
     }
-    div.redirects a {
+    .btn {
         font-family: "Chivo", sans-serif;
-        font-weight: 500;
+        font-weight: 400;
     }
 
-    /* Time, form labels use Chivo Mono */
-    time, form label {
+    /* Time uses Chivo Mono */
+    time {
         font-family: "Chivo Mono", sans-serif;
     }
 
@@ -529,7 +514,7 @@ body {
     p {font-size: var(--my-size);}
 
     /* Paragraphs use a top margin, by default */
-    :where(main) p:not(:first-child) {margin-top: var(--entry-gap);}
+    p:where(main p:not(:first-child, .marginless)) {margin-top: var(--entry-gap);}
 
     /* Narrow paragraphs are half the width of the container, except on mobile */
     p.narrow {max-width: max(40ch, 60%);}
@@ -565,7 +550,7 @@ body {
     .r-after {display: none;}
     span.err:hover > .r-after {display: inline;}
     span.err:hover > .r-before {display: none;}
-    span.err {text-decoration: underline wavy var(--bone);}
+    span.err {text-decoration: underline wavy var(--secondary);}
     span.err:hover {text-decoration: none;}
 
 /* Accessibility & cross-compatibility */
@@ -576,7 +561,7 @@ body {
     }
 
     /* Mobile styling */
-    @media (max-width: 50rem) {
+    @media (max-width: 60rem) {
         /* Reduced article height */
         :root {--ideal-article-height: 24rem;}
 
@@ -609,37 +594,25 @@ body {
         /* Redirects use outline offset */
         a:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px;}
 
-        /* No outline for buttons */
-        div.redirects a:not(.inline-link):focus-visible {outline: none;}
-
         /* Redirects and current page accented */
         nav a:hover, nav a:focus-visible, nav a.p-current {color: var(--accent);}
 
-        /* Icons inside redirects accented or made light */
+        /* Icons inside redirects/buttons accented or made light */
         a:focus-visible svg {fill: var(--accent);}
-        div.redirects a:focus-visible svg.i-true {fill: var(--light);}
+        .btn:focus-visible svg.i-true {fill: var(--light);}
 
-        /* Redirect buttons highlighted */
-        div.redirects a:not(.inline-link):focus-visible {
-            background: var(--accent);
+        /* Buttons highlighted */
+        .btn:focus-visible {
             color: var(--light);
+            outline: none;
             border: 1px solid var(--accent);
         }
-
-        /* No border radius for inline links */
-        a.inline-link:focus-visible {border-radius: 0;}
+        .btn:focus-visible::before {opacity: 1;}
 
         /* Inputs gain an outline */
         input:focus-visible, textarea:focus-visible {
             border: 1px solid var(--accent);
             outline: 1px solid var(--accent);
-        }
-
-        /* Input buttons highlighted */
-        input[type="submit"]:focus-visible {
-            background: var(--accent);
-            color: var(--light);
-            outline: none;
         }
 
     /* Functionally hide some headers, only visible for screen readers : @ffoodd on GitHub */
