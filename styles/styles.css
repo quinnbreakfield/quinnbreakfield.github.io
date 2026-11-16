@@ -90,7 +90,7 @@
 /* Text size */
 
     /* Size of hero header */
-    h1.hero {--my-size: clamp(2.40rem, calc(2.20rem + 6vw), 7.00rem);}
+    h1.hero {--my-size: clamp(1.60rem, calc(1.20rem + 9vw), 7.00rem);}
 
     /* Size of other headers */
     h1, h2 {--my-size: clamp(1.60rem, calc(0.80rem + 6vw), 5.25rem);}
@@ -220,7 +220,6 @@ body {
     /* Button hovering */
     .btn:not(:disabled):hover {
         color: var(--light);
-        border: 1px solid var(--secondary);
         box-shadow: 0 0 1rem .1rem rgb(from var(--accent) r g b / 0.25);
     }
     .btn::before {
@@ -547,6 +546,8 @@ body {
 
     /* Essentials are accented */
     span.essential {color: var(--accent); font-weight: 400;}
+
+    span.no-wrap {text-wrap: nowrap; white-space: nowrap;}
 
     /* Error spans underline text until hover, then change the content */
     span.err {cursor: default;}
