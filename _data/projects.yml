@@ -7,7 +7,10 @@
   }
   year: 2027
   tags: ['Point & Click', 'Java Swing']
-  description: You called into the depths of the night. And the night called back. Coming soon.
+  description: You called into the depths of the night. And the night called back. Coming soon on Steam. Playable on all operating systems.
+  redirects:
+    - text: Wishlist on Steam
+      url: https://github.com/antiweevil/obscure-usb/
 
 - title: Obscure USB
   image: {
